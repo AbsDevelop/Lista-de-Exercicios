@@ -1,0 +1,201 @@
+Exercício 1: Escreva um programa que peça para o usuário digitar uma data contendo dia, mês e ano e o programa deverá informar se é uma data válida ou não. Obs.: criar obrigatoriamente uma struct para a data. 
+
+public struct validata
+	{
+		public int dia;
+		public int mes;	
+		public int ano;
+	}
+	public static void Main()
+	{
+		validata data;
+		Console.WriteLine("Seja bem-vindo ao Validata, o seu validador de datas online (ノ^_^)ノ ");
+		Console.WriteLine();
+		Console.WriteLine("Digite o dia da sua data (DD):");
+		data.dia = int.Parse(Console.ReadLine());
+		Console.WriteLine("Digite o mês da sua data (MM):");
+		data.mes = int.Parse(Console.ReadLine());
+		Console.WriteLine("Digite o ano da sua data (AAAA):");
+		data.ano = int.Parse(Console.ReadLine());
+		Console.WriteLine("Sua data é {0}/{1}/{2}, se não houver nenhuma objeção => Parabéns, sua nota existe, existiu ou existirá kkk", data.dia, data.mes, data.ano);
+		Console.WriteLine("Objeções:");
+		Validadia(data);
+		ValidaFev(data);
+		ValidaAbrIJunISetINov(data);
+		Validameses(data);
+		Validano(data);
+	}
+	static void Validadia(validata data) 
+	{
+		if(data.dia >= 32)
+		{
+			Console.WriteLine("Dias não é no máximo até 31?");
+		}
+	}
+	static void ValidaFev(validata data) 
+	{
+		if(data.mes == 02 && data.dia >= 30)
+		{
+			Console.WriteLine("Eii, Fevereiro só tem 28 e 29 dias ಠಿ︵ಠ");
+		}	 
+	}
+	static void ValidaAbrIJunISetINov(validata data) 
+	{
+		if(data.mes == 04 || data.mes == 06 || data.mes == 09 || data.mes == 11 && data.dia >= 31)
+		{
+			Console.WriteLine("Lindo, Abril, Junho, Setembro e Novembro só tem 30 dias");
+		}	 
+	}
+	static void Validameses(validata data) 
+	{
+		if(data.mes >= 13)
+		{
+			Console.WriteLine("O calendário gregoriano tem somente 12 meses...");
+		}	 
+	}
+	static void Validano(validata data) 
+	{
+		if(data.ano > 9999)
+		{
+			Console.WriteLine("Esse ano vai demorar muito pra chegar ;-;");
+		}	 
+	}
+
+Exercício 2: Escreva um programa que leia o nome de 15 alunos, onde cada aluno deve ser registrado 2 notas e um campo para armazenar a média. Nos campos ‘média’ deverá ser calculada a média das duas notas do aluno. Ao final deverá ser exibido na tela um relatório com os dados de todos os alunos (nome, notas, média) e a informação se o aluno foi aprovado ou reprovado (média para aprovação >= 7,0). Para o caso de aprovado exibir todos os dados do aluno na cor azul, caso contrário exibir os dados na cor vermelha. 
+Obs.: Usar obrigatoriamente struct, vetor e laço de repetição.
+
+public struct sistema
+	{
+  		public string nome;
+  		public double nota1;
+		public double nota2;
+  		public double media;
+  		public string situacao;
+	}
+	public static void Main (string[] args) 
+	{
+		sistema[] aluno = new sistema[15];
+		
+		Console.WriteLine("Sistema de Notas da Escola Rodolfo Berezin");
+		Console.WriteLine();
+   		for (int x=0;x<=15;x++){
+    	Console.WriteLine("Digite o nome do {0} Aluno:",x+1);
+		aluno[x].nome = Console.ReadLine();
+     	Console.WriteLine("Digite a 1° nota do {0}° aluno:",x+1);
+     	aluno[x].nota1 = double.Parse(Console.ReadLine());
+     	Console.WriteLine("Digite a 2° nota do {0}° aluno:",x+1);
+     	aluno[x].nota2 = double.Parse(Console.ReadLine());
+     	aluno[x].media = ((aluno[x].nota1 + aluno[x].nota2) / 2);
+     	Console.Clear();
+   	}
+  	for (int x=0;x<=15;x++)
+   	{
+		if (aluno[x].media>=7)
+		{
+      		Console.WriteLine("Aluno {0} teve de média {1}.", aluno[x].nome);
+			Console.ForegroundColor = ConsoleColor.Blue;
+			Console.WriteLine("O aluno(a) foi aprovado ^_^", aluno[x].media);
+    	}
+	  	else
+	   	{
+    	  	Console.WriteLine("Aluno {0} teve de média {1}.", aluno[x].nome);
+			Console.ForegroundColor = ConsoleColor.Red;
+			Console.WriteLine("O aluno(a) foi reprovado >︵<", aluno[x].media);
+    	}   	} 	
+}
+
+Exercício 3: Escreva um programa que apresente o seguinte menu para o usuário
+Neste exercício, deverá ser criada uma struct carro que contenha no mínimo os campos modelo, ano e cor. 
+O usuário deverá cadastrar vários carros até um máximo de 500 registros, portanto deverá ser utilizado um vetor.
+
+- Olha eu não consegui terminar, mas até o fim da aula eu fiz isso(os outros dois eu entreguei na data certa)
+
+public struct sistema
+	{
+		public int carro;
+		public int ano;
+		public string modelo;
+		public string cor;
+	}
+	public static void Main()
+	{
+		sistema dados;
+		Console.WriteLine("Bem-vindo ao Sistema de Carros do Estado de São Oswaldo");
+    	Console.WriteLine();		
+    	Console.WriteLine("Você deseja:");		
+		Console.WriteLine("1)Cadastrar carro\n2)Consultar carro por ano de fabricação\n3)Consultar carro por modelo\n4)Consultar carro por cor\n5)Exibir todos os carros cadastrados\n6)Alterar algum dado de um carro\n7)Excluir um carro\n0)Sair");
+    dados.carro = int.Parse(Console.ReadLine());
+		Console.Clear();
+    switch(dados.carro)
+	{
+      case 1:
+          Cadastrarcarro();
+          break;
+      case 2:
+          Consultarcarroano();
+          break;
+      case 3:
+          Consultarcarromodelo();
+          break;
+      case 4:
+          Consultarcarrocor();
+          break;
+	  case 5:
+          Exibircarros();
+          break;
+      case 6:
+          Alterardadoscarro();
+          break;
+      case 7:
+          Excluircarro();
+          break;
+      case 0:
+          Sair();
+          break;
+      default:
+          Console.WriteLine("Opcão desconhecida");  
+          break;          
+    }
+  }
+
+	static void Cadastrarcarro()
+  	{//1
+		sistema dados;
+    	Console.WriteLine("Cadastramento de Carros:");
+		Console.WriteLine();
+		Console.WriteLine("Digite o modelo do carro:");
+		dados.modelo = Console.ReadLine();		
+		Console.WriteLine("Digite o ano de fabricação do carro:");
+		dados.ano = int.Parse(Console.ReadLine());
+		Console.WriteLine("Digite a cor do carro:");
+		dados.cor = Console.ReadLine();
+		Console.WriteLine("Seu Carro foi cadastrado!");
+  	}
+  	static void Consultarcarroano()
+  	{//2
+    	Console.WriteLine("Consulta dos Carros cadastrados com base no ano de fabricação:");
+  	}	
+    static void Consultarcarromodelo()
+	{//3
+    	Console.WriteLine("Consulta dos Carros cadastrados com base no modelo do veículo:");
+  	}
+   	static void Consultarcarrocor()
+ 	{//4
+		Console.WriteLine("Consulta dos Carros cadastrados com base na cor do veículo:");
+	}
+  	static void Exibircarros()
+	{//5
+    	Console.WriteLine("Exibição de todos os carros cadastrados:");
+  	}		
+  	static void Alterardadoscarro()
+	{//6
+    	Console.WriteLine("Alteração de dados cadastrados:");
+  	}
+    static void Excluircarro()
+	{//7
+    	Console.WriteLine("Exclusão de dados cadastrados:654");
+  	}
+    static void Sair()
+	{//0
+    	Console.WriteLine("Você saiu do sistema!");
+	}
